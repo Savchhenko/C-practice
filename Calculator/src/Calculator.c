@@ -78,7 +78,7 @@ int main(void)
 		default : printf("Wrong choice.");
 			break;
 		}
-	printf("\n----------------------------------------\n");
+	printf("\n-------------------------------------\n");
 
 	return EXIT_SUCCESS;
 }
