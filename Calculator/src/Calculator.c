@@ -26,6 +26,7 @@ int main(void)
 	printf("'*' - Multiplication\n");
 	printf("'/' - Division\n");
 	printf("'^' - Exponentiation\n");
+	printf("'!' - Factorial\n");
 	printf("Enter your choice : ");
 	scanf("%c",&choice);
 	switch(choice)
@@ -63,7 +64,16 @@ int main(void)
 				  {
 					res = res * a ; // возведение в степень
 				  }
-			  printf("result = %f\n", res); // вывод результата
+			  printf("Result = %f\n", res);
+			break;
+		case '!' :
+			printf("Enter number : ");
+			scanf("%f",&a);
+			for(int i=1; i<=a; i++) // цикл для переменной i от 1 до a с шагом 1
+				  {
+					res = res * i; // считаем факториал числа
+				  }
+			printf("Result = %f\n", res);
 			break;
 		default : printf("Wrong choice.");
 			break;
