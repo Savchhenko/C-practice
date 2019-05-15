@@ -34,25 +34,25 @@ int main(void)
 		case '+' :
 			printf("Enter two number : ");
 			scanf("%f%f",&a,&b);
-			operation=a+b;
+			operation=a+b; // сумма двух чисел
 			printf("Result = %f",operation);
 			break;
 		case '-' :
 			printf("Enter two number : ");
 			scanf("%f%f",&a,&b);
-			operation=a-b;
+			operation=a-b;  // разность двух чисел
 			printf("Result = %f",operation);
 			break;
 		case '*' :
 			printf("Enter two number : ");
 			scanf("%f%f",&a,&b);
-			operation=a*b;
+			operation=a*b;  // умножение двух чисел
 			printf("Result = %f",operation);
 			break;
 		case '/' :
 			printf("Enter two number : ");
 			scanf("%f%f",&a,&b);
-			operation=a/b;
+			operation=a/b;  // деление двух чисел
 			printf("Result = %f",operation);
 			break;
 		case '^' :
@@ -78,7 +78,7 @@ int main(void)
 		default : printf("Wrong choice.");
 			break;
 		}
-	printf("\n-------------------------------------\n");
+	printf("\n----------------------------------------\n");
 
 	return EXIT_SUCCESS;
 }
