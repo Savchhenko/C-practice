@@ -24,7 +24,7 @@ int main(void)
 
 			printf("'+' - Addition\n'-' - Subtraction\n'*' - Multiplication\n'/' - Division\n'^' - Exponentiation\n'!' - Factorial\n");
 			printf("Enter your choice : ");
-			scanf("%c",&choice);
+			scanf(" %c",&choice);
 			switch(choice)
 				{
 				case '+' :
