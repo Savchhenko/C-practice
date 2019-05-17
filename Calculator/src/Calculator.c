@@ -7,10 +7,8 @@
  Description : Hello World in C, Ansi-style
  ============================================================================
  */
-
-
-/* C Program - Simple Calculator */
 /* Простой калькулятор */
+/* C Program - Simple Calculator */
 
 #include<stdio.h>
 #include<stdlib.h>
