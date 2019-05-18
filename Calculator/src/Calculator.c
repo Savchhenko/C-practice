@@ -3,11 +3,11 @@
  Name        : Calculator.c
  Author      : Bear
  Version     :
- Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style
+ Copyright   : It belongs to Alexandra Savchenko
+ Description : Simple Calculator with 6 options (+,-,*,/,^,!)
  ============================================================================
  */
-/* Простой калькулятор */
+/* This work belongs to the student Alexandra Savchenko */
 /* C Program - Simple Calculator */
 
 #include<stdio.h>
@@ -16,13 +16,13 @@ int main(void)
 {
 	setvbuf(stdout, NULL, _IONBF, 0);
 	setvbuf(stderr, NULL, _IONBF, 0);
-	while(1)
-		{
+     int k; //переменная, отвечающая за продолжение или остановку программы
+     do {
 			float a, b, operation;
 			float res = 1;
 			char choice;
 
-			printf("'+' - Addition\n'-' - Subtraction\n'*' - Multiplication\n'/' - Division\n'^' - Exponentiation\n'!' - Factorial\n");
+			printf("'+' - Addition\n'-' - Subtraction\n'*' - Multiplication\n'/' - Division\n'^' - Exponentiation\n'!' - Factorial\n"); //пользовательский интерфейс
 			printf("Enter your choice : ");
 			scanf(" %c",&choice);
 			switch(choice)
@@ -75,6 +75,17 @@ int main(void)
 					break;
 				}
 			printf("\n-------------------------------------\n");
-		}
+
+
+			printf("Enter 1, if you want to continue;\nEnter 0, if you want to end:"); //запрос на повторение работы
+			scanf(" %i", &k);
+			printf("-------------------------------------\n");
+
+			if( k == 1)   //условие для повторения работы
+		       continue;
+			else
+				break;
+      }
+      while(1); // цикл do-while, позволяющий вернуться в начало программы
 	return EXIT_SUCCESS;
 }
