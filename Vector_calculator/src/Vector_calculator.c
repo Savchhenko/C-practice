@@ -37,7 +37,7 @@ int main(void) {
 
 	mult = Ax * Bx + Ay * By;
 	printf("\nScalar multiplication of vectors:\n");
-	printf("result = %i", mult);
+	printf("result <AB>= %i", mult);
 
 
 
