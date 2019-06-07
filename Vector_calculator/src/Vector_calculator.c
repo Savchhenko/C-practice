@@ -34,8 +34,9 @@ int main(void) {
 	}
 
 	char choice;
-	printf("Choose the operation:\n\"+\"-Vector addition\n\"-\"-Vector difference\n\"*\"-Scalar multiplication of vectors\n");
-	scanf("%c", &choice);
+	printf("\"+\"-Vector addition\n\"-\"-Vector difference\n\"*\"-Scalar multiplication of vectors\n ");
+	printf("Choose the operation:\n");
+	scanf(" %c", &choice);
 
 	float t = 0;
 	switch (choice) {
