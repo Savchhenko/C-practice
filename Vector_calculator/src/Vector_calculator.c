@@ -16,32 +16,50 @@ int main(void) {
 	setvbuf(stdout, NULL, _IONBF, 0);
 	setvbuf(stderr, NULL, _IONBF, 0);
 
-	int Ax, Ay, Bx, By, sum_x, sum_y, dif_x, dif_y, mult;
-	printf("Enter Ax: ");
-	scanf("%i", &Ax);
-	printf("Enter Ay: ");
-	scanf("%i", &Ay);
-	printf("Enter Bx: ");
-	scanf("%i", &Bx);
-	printf("Enter By: ");
-	scanf("%i", &By);
-	sum_x = Ax + Bx;
-	sum_y = Ay + By;
-	printf("Vector addition:\n");
-	printf("vector AB = ( %i; %i)\n", sum_x, sum_y);
+	float *A, *B;
+	int size;
+	printf("Enter the number of coordinates of vectors: ");
+	scanf("%i", &size);
+	if (size != 0) {
+		A = calloc(size, sizeof(A));
+		B = calloc(size, sizeof(B));
+	}
+	printf("Enter coordinates of first vector: ");
+	for (int i = 0; i < size; i++) {
+		scanf("%f", &A[i]);
+	}
+	printf("Enter coordinates of second vector: ");
+	for (int i = 0; i < size; i++ ) {
+		scanf("%f", &B[i]);
+	}
 
-	dif_x = Ax -Bx;
-	dif_y = Ay - By;
-	printf("\nVector difference:\n");
-	printf("vector AB = ( %i; %i)\n", dif_x, dif_y);
+	char choice;
+	printf("Choose the operation:\n\"+\"-Vector addition\n\"-\"-Vector difference\n\"*\"-Scalar multiplication of vectors\n");
+	scanf("%c", &choice);
 
-	mult = Ax * Bx + Ay * By;
-	printf("\nScalar multiplication of vectors:\n");
-	printf("result <AB>= %i", mult);
+	float t = 0;
+	switch (choice) {
+	case '+':
+		printf("New vector: ");
+		for (int i = 0; i < size; i++) {
+			printf("%.1f", A[i] + B[i]);
+		}
+		break;
+	case '-':
+		printf("New vector: ");
+		for (int i = 0; i < size; i++) {
+			printf("%.1f", A[i] - B[i]);
+		}
+		break;
+	case '*':
+		for (int i = 0; i < size; i++) {
+			t = t + A[i] * B[i];
+		}
+		printf("%.1f", t);
+		break;
+	}
+	free(A);
+	free(B);
 
-
-
-
-
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
