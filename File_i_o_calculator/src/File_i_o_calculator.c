@@ -11,6 +11,36 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//функция с векторными операциями
+void vector_calc(FILE *fin, FILE *fout, char first) {
+	float *A, *B;
+	int size; //размерность векторов
+	fscanf(fin, "%i", &size); //прочли символ = размер векторов
+	A = malloc(size *sizeof(float)); //выделение памяти под векторы
+    B = malloc(size *sizeof(float));
+    for (int i=0; i<size; i++)
+        fscanf(fin,"%f", &A[i]);
+    for (int k=0; k<size; k++)
+        fscanf(fin,"%f", &B[k]);
+
+    fscanf (fin,"%i",&first) ;
+        switch (first){
+            case '+':
+
+            case '-':
+
+            case '*':
+            }
+}
+
+
+
+
+
+
+
+
+
 int main(void) { //главная функция
 
 	setvbuf(stdout, NULL, _IONBF, 0);
@@ -31,10 +61,10 @@ int main(void) { //главная функция
 
 	fscanf(fout,"%c %c", &first, &second); //прочли первые два символа и присвоили их переменным
     if(second == 'v') {
-    	vector_calc();
+    	vector_calc(fin, fout, first);
     }
     if(second == 's') {
-    	simple_calc();
+    	simple_calc(fin, fout, second);
     }
     else {
     	printf("Error: invalid value in input file.");
