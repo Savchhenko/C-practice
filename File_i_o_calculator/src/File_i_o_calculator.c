@@ -27,21 +27,67 @@ void vector_calc(FILE *fin, FILE *fout, char first) {
         switch (first){
             case '+':
 
+            	free(A);
+            	free(B);
+            	break;
             case '-':
 
+            	free(A);
+				free(B);
+				break;
             case '*':
+
+            	free(A);
+				free(B);
+				break;
             }
 }
 
+//функция простого численного калькулятора
+void simple_calk(FILE *fin, FILE *fout, first) {
+	float *A, *B;
+	float res = 1;
+	A = calloc(1, sizeof(float));
+	 fscanf(fin, "%f", A);
+	B = calloc(1, sizeof(float));
+	 fscanf(fout, "%f", B);
 
+	switch(first){
+	case '+':
 
+		free(A);
+		free(B);
+		break;
+	case '-':
 
+		free(A);
+		free(B);
+		break;
+	case '*':
 
+		free(A);
+		free(B);
+		break;
+	case '/':
 
+		free(A);
+		free(B);
+		break;
+	case '^':
 
+		free(A);
+		free(B);
+		break;
+	case '!':
 
+		free(A);
+		free(B);
+		break;
+	}
+}
 
-int main(void) { //главная функция
+//главная функция
+int main(void) {
 
 	setvbuf(stdout, NULL, _IONBF, 0);
 	setvbuf(stderr, NULL, _IONBF, 0);
@@ -64,7 +110,7 @@ int main(void) { //главная функция
     	vector_calc(fin, fout, first);
     }
     if(second == 's') {
-    	simple_calc(fin, fout, second);
+    	simple_calc(fin, fout, first);
     }
     else {
     	printf("Error: invalid value in input file.");
