@@ -11,37 +11,39 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(void) {
+int main(void) { //главная функция
 
 	setvbuf(stdout, NULL, _IONBF, 0);
 	setvbuf(stderr, NULL, _IONBF, 0);
 
-	FILE *fin, *fout;
-	char c, one, two, v;
-	int size;
-	int *A, *B;
-
-	fin = fopen("content.txt", "r");
+	FILE *fin, *fout; //указатели для обоих файлов
+	char first, second; // переменные, отвечающие за первый и второй символ в файле
+	fin = fonpen("content.txt","r");
+	if (fin == NULL)
+	    {
+	         puts("Input file cannot be opened");
+	    }
 	fout = fopen("output.txt", "w");
+	if (fout == NULL)
+	    {
+	       puts("Output file cannot be opened");
+	    }
 
-	fscanf(fin, "%c", &c);
-	one = c;
-	fscanf(fin, "%c %c", &c);
-	two = c;
+	fscanf(fout,"%c %c", &first, &second); //прочли первые два символа и присвоили их переменным
+    if(second == 'v') {
+    	vector_calc();
+    }
+    if(second == 's') {
+    	simple_calc();
+    }
+    else {
+    	printf("Error: invalid value in input file.");
+    }
 
-	if (two == v) {
-		fscanf(fin, "%c %c %c", &c);
-		size = c;
-		if (size != 0) {
-			A = calloc(size, sizeof(A)); //выделение памяти под вектор
-			B = calloc(size, sizeof(B));
-		}
-
-	}
-
-
-	fclose(fin);
+    fclose(fin); //закрыли оба файла
 	fclose(fout);
 
 	return EXIT_SUCCESS;
 }
+
+
