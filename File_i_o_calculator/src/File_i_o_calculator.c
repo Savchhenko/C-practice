@@ -14,8 +14,9 @@
 //функция с векторными операциями
 void vector_calc(FILE *fin, FILE *fout, char first) {
 	float *A, *B;
+	float answer;
 	int size; //размерность векторов
-	fscanf(fin, "%i", &size); //прочли символ = размер векторов
+	fscanf(fin, "%i", &size); //прочли символ = размерерность векторов
 	A = malloc(size *sizeof(float)); //выделение памяти под векторы
     B = malloc(size *sizeof(float));
     for (int i=0; i<size; i++)
@@ -23,30 +24,44 @@ void vector_calc(FILE *fin, FILE *fout, char first) {
     for (int k=0; k<size; k++)
         fscanf(fin,"%f", &B[k]);
 
-    fscanf (fin,"%i",&first) ;
-        switch (first){
-            case '+':
+    fscanf(fin,"%c",&first);
+	switch (first){
+		case '+':
+			fprintf(fout, "(");
+			for (int i = 0; i < size; i++){
+				fprintf(fin," %.2f ", A[i]);
+			}
+			fprintf(fout, ") + (");
+			for (int i = 0; i < size; i++){
+				fprintf(fout," %.2f ", B[i]);
+			}
+			fprintf(fout, ") = (");
+			for (int i = 0; i < size; i++) {
+				answer = A[i] + B[i];
+				fprintf(fout," %.2f ", answer);
+			}
+			fprintf(fout, ")");
 
-            	free(A);
-            	free(B);
-            	break;
-            case '-':
+			free(A);
+			free(B);
+			break;
+		case '-':
 
-            	free(A);
-				free(B);
-				break;
-            case '*':
+			free(A);
+			free(B);
+			break;
+		case '*':
 
-            	free(A);
-				free(B);
-				break;
-            }
+			free(A);
+			free(B);
+			break;
+		}
 }
 
 //функция простого численного калькулятора
-void simple_calk(FILE *fin, FILE *fout, first) {
+void simple_calc(FILE *fin, FILE *fout, char first) {
 	float *A, *B;
-	float res = 1;
+	float answer;
 	A = calloc(1, sizeof(float));
 	 fscanf(fin, "%f", A);
 	B = calloc(1, sizeof(float));
@@ -54,34 +69,45 @@ void simple_calk(FILE *fin, FILE *fout, first) {
 
 	switch(first){
 	case '+':
-
+		answer = *A + *B;
+		fprintf(fout, "%.0f %c %.0f = %f", *A, first, *B, answer); //делаем запись результата операции в файл
 		free(A);
 		free(B);
 		break;
 	case '-':
-
+		answer = *A - *B;
+		fprintf(fout, "%.0f %c %.0f = %f", *A, first, *B, answer);
 		free(A);
 		free(B);
 		break;
 	case '*':
-
+		answer = *A * *B;
+		fprintf(fout, "%.0f %c %.0f = %f", *A, first, *B, answer);
 		free(A);
 		free(B);
 		break;
 	case '/':
-
+		answer = *A / *B;
+		fprintf(fout, "%.0f %c %.0f = %f", *A, first, *B, answer);
 		free(A);
 		free(B);
 		break;
 	case '^':
-
+		answer = 1;
+		for (int i = 1; i <= *B; i++) {
+			answer = answer * *A;
+		}
+		fprintf(fout, "%.0f %c %.0f = %f", *A, first, *B, answer);
 		free(A);
 		free(B);
 		break;
 	case '!':
-
+		answer = 1;
+		for(int i=1; i <= *A; i++) {
+		   answer = answer * i;
+	    }
+		fprintf(fout, "%.0f! = %f", *A, answer);
 		free(A);
-		free(B);
 		break;
 	}
 }
@@ -94,7 +120,7 @@ int main(void) {
 
 	FILE *fin, *fout; //указатели для обоих файлов
 	char first, second; // переменные, отвечающие за первый и второй символ в файле
-	fin = fonpen("content.txt","r");
+	fin = fopen("content.txt","r");
 	if (fin == NULL)
 	    {
 	         puts("Input file cannot be opened");
