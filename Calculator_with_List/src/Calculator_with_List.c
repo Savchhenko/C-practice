@@ -16,7 +16,7 @@ typedef struct element {
     char choice; //первый символ в файле,отвечающий за выбор операции
     char type; //второй символ,отвечающий за тип калькулятора (v/s)
     int number; //третий символ,отвечающий за размерность векторов (в случае численного калькулятора number=1)
-    float *value1;
+    float *value1; //указатели на массивы, в которых сохраняются значения координат векторов
     float *value2;
     struct element *next;
 } element;
@@ -62,7 +62,7 @@ else {
     last = tmp; //передали last,который был пустой,значение переменной
 }
 }
-void pushres ()
+void fill_res ()
 {
     res *tmp_res = (res*)malloc(sizeof(element));
     tmp_res->result = malloc(last->number*sizeof(float));
@@ -81,9 +81,9 @@ void pushres ()
 					break;
 				case '!' :
 					tmp_res->result[0] =1 ;
-					for (int c = 0;c<=last->value1[0];c++)
+					for (int n = 0; n<=last->value1[0]; n++)
 					 {
-									 tmp_res->result[0]=tmp_res->result[0]*c;
+									 tmp_res->result[0]=tmp_res->result[0]*n;
 					 }
 					break;
 				case '*' :
@@ -94,7 +94,7 @@ void pushres ()
 					break;
 				case '^' :
 					tmp_res->result[0] = last->value1[0] ;
-					for (float c = 1 ;c<last->value2[0];c++)
+					for (float n = 1 ; n<last->value2[0]; n++)
 					{
 						tmp_res->result[0]= tmp_res->result[0] * last->value1[0];
 					}
@@ -143,13 +143,13 @@ int main(void) {
     fin = fopen("input.txt","r");
     while (!feof(fin)) //пока не конец файла
     {
-        filling( fin);
+        filling( fin); //заполняем список данными
     }
     fclose(fin);
     last = head;
     while(last !=NULL)
     {
-        pushres () ;
+        fill_res() ; //делаем вычисления и заносим их в другой список
         last =last->next;
     }
     lastres = headres;
@@ -159,7 +159,7 @@ int main(void) {
     {
         for (int y =0;y<lastres->size;y++)
         {
-            fprintf (fout,"%f ",lastres->result[y]);
+            fprintf (fout,"%.2f ",lastres->result[y]);
         }
         lastres =lastres->next;
     }
